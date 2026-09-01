@@ -284,9 +284,8 @@ useSeoMeta({
 
           <RepoCard
             name="openmixer"
-            href="https://github.com/FreeMixer/openmixer"
             licence="GPL-3.0-or-later"
-            status="Sibling project · a software mixing console"
+            status="Sibling project · repository not public yet"
           >
             <p>
               A mixing console built in software for Linux, which drives REAC stageboxes
@@ -295,7 +294,9 @@ useSeoMeta({
             </p>
             <p>
               It is where the protocol work goes to be useful, and it is where several
-              of the hardware results on the compatibility page were measured.
+              of the hardware results on the compatibility page were measured. Its
+              repository is not open to the public at the moment, which is why there is
+              no link on this card.
             </p>
           </RepoCard>
         </div>
