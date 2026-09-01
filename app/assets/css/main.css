@@ -1,0 +1,56 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+/*
+ * Tailwind v4 entry. Core first, then Nuxt UI (v4 integrates Tailwind v4 itself).
+ *
+ * The palette is an instrument, not a product: a neutral near-black bench, warm
+ * ink, and one signal amber for anything that carries meaning. Verified facts get
+ * a separate green, because on this site the difference between "we measured
+ * this" and "we think this" is the whole point and it should be visible without
+ * reading.
+ *
+ * Everything else is Tailwind utilities and Nuxt UI components. There are no
+ * hand-written rules and no second stylesheet.
+ */
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --color-field: #0d0d10;
+  --color-surface: #16171b;
+  --color-surface-2: #1e2026;
+  --color-ink: #e8e6e3;
+  --color-ink-dim: #9a978f;
+  --color-ink-faint: #6b6862;
+  --color-signal: #e8933a;
+  --color-verified: #6fbf7a;
+  --color-open: #7f8cc4;
+  --color-edge: #2b2c31;
+  --color-edge-strong: #3d3f46;
+
+  /* Families are named here and nowhere else. @nuxt/fonts (shipped with Nuxt UI)
+     reads them off this file, downloads them AT BUILD TIME and emits self-hosted
+     @font-face rules, so the built site fetches no stylesheet from anyone. */
+  --font-display: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/*
+ * `static` is load-bearing. Tailwind v4 emits only the theme variables some
+ * generated utility references, and nothing here writes `bg-sig-500` by hand —
+ * Nuxt UI reads the ramp through its own `--ui-*` indirection. Without `static`
+ * the ramp is tree-shaken away and every Nuxt UI control loses its colour.
+ */
+@theme static {
+  --color-sig-50: #fdf3e7;
+  --color-sig-100: #fae2c4;
+  --color-sig-200: #f5cd99;
+  --color-sig-300: #f0b46b;
+  --color-sig-400: #eca24f;
+  --color-sig-500: #e8933a;
+  --color-sig-600: #c9762a;
+  --color-sig-700: #a25c20;
+  --color-sig-800: #7a441a;
+  --color-sig-900: #522d13;
+  --color-sig-950: #2e190a;
+}

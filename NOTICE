@@ -1,0 +1,17 @@
+FreeREAC — freereac-www
+
+This is the FreeREAC project website. The code is GPL-3.0-or-later; the text is
+FreeREAC's own re-expression of observed protocol behaviour and of work carried
+out on equipment the project owns.
+
+FreeREAC is an independent interoperability project. It is not affiliated with,
+sponsored by, or endorsed by Roland. REAC is a trademark of Roland Corporation,
+used here only to identify the protocol this project interoperates with. This is
+not official Roland documentation.
+
+Reverse engineering for interoperability is permitted, and protocol interfaces
+are not copyrightable. FreeREAC publishes its own findings, re-expressed in its
+own words and tables. It redistributes no vendor firmware, binaries, symbols or
+decompilation listings.
+
+(Not legal advice.)
