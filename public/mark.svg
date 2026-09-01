@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FreeREAC">
+  <rect width="64" height="64" rx="10" fill="#0d0d10" stroke="#2b2c31"/>
+  <!-- a frame on a wire: the fixed header, the channel payload, the end marker -->
+  <rect x="10" y="27" width="9"  height="10" rx="1.5" fill="#e8933a"/>
+  <rect x="21" y="27" width="5"  height="10" rx="1.5" fill="#3d3f46"/>
+  <rect x="28" y="27" width="5"  height="10" rx="1.5" fill="#3d3f46"/>
+  <rect x="35" y="27" width="5"  height="10" rx="1.5" fill="#3d3f46"/>
+  <rect x="42" y="27" width="5"  height="10" rx="1.5" fill="#3d3f46"/>
+  <rect x="49" y="27" width="5"  height="10" rx="1.5" fill="#6fbf7a"/>
+  <path d="M6 44h52" stroke="#2b2c31" stroke-width="1.5"/>
+  <path d="M6 20h52" stroke="#2b2c31" stroke-width="1.5"/>
+</svg>
