@@ -3,7 +3,7 @@
 useSeoMeta({
   title: 'FreeREAC — open-source tools for Roland REAC on Linux',
   description:
-    'FreeREAC documents Roland REAC and ships free software to run it on Linux: a protocol library, a PipeWire endpoint, an OpenWrt bridge to AES67, and analysis tools. Install, get started, and find every repository here.',
+    'FreeREAC reverse-engineered Roland REAC and ships free software to run it on Linux: libreac, the protocol and its transport, and reac-pw, the PipeWire endpoint that puts a stagebox on the graph. Install, get started, and find every repository here.',
 });
 </script>
 
@@ -15,14 +15,18 @@ useSeoMeta({
           REAC Exposed Audio Communications · EtherType 0x8819
         </p>
         <h1 class="mt-6 max-w-4xl font-display text-3xl font-semibold leading-[1.15] tracking-tight text-ink sm:text-5xl">
-          Free software for Roland REAC.
+          Plug a Roland REAC stagebox into Linux, and it is ready.
         </h1>
         <p class="mt-8 max-w-3xl text-lg leading-relaxed text-ink-dim">
-          REAC is the audio-over-Ethernet protocol Roland's digital mixers and stageboxes
-          use to carry many channels of low-latency audio over one cable. FreeREAC is an
-          independent project that documents the protocol and ships GPL-3.0 software to
-          run it on ordinary Linux machines: bring a stagebox onto a Linux audio graph,
-          bridge it to standard AES67 multicast, and analyse captured traffic.
+          REAC is the proprietary protocol Roland's digital mixers use to carry many
+          channels of audio to their stageboxes over one Ethernet cable. FreeREAC
+          reverse-engineered it for real — not a partial sniff, a working
+          implementation — and proved it on real desks and real boxes: an M-200
+          driving REAC at 44.1 and 48 kHz, an M-5000 at 96 kHz, and S-1608, S-4000S
+          and S-0808 stageboxes on the other end. Plug a box into a Linux machine and
+          it comes up on the audio graph: the three REAC paces (44.1/48/96 kHz),
+          head-amp control — gain, phantom power, pad — carried on the wire, both
+          master and slave roles, and tagged VLAN trunk segments.
         </p>
         <div class="mt-10 flex flex-wrap gap-3">
           <UButton to="#install" size="lg" color="primary" trailing-icon="i-lucide-arrow-right">
@@ -35,37 +39,27 @@ useSeoMeta({
       </div>
     </section>
 
-    <section id="components" class="border-b border-edge">
+    <section id="stack" class="border-b border-edge">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="The software" title="What each piece does." />
+        <SectionHead eyebrow="The stack" title="Two layers." />
         <div class="grid gap-5 md:grid-cols-2">
           <RepoCard
             name="libreac"
             href="https://github.com/FreeREAC/libreac"
             licence="GPL-3.0-or-later"
-            status="The protocol library"
+            status="The protocol, and its transport — one repository, two libraries"
           >
             <p>
-              A C library for the REAC wire format and control plane: the audio frame
-              codec, the master/slave establishment and head-amp (gain, phantom power,
-              pad) records. It touches no socket and no clock — it is the byte-layout
-              truth that every other tool here links against, so they cannot disagree
-              about what a frame means.
+              <span class="text-ink">libreac</span> owns what the bytes mean: the REAC
+              frame codec, the 32-byte control block and its checksums, head-amp
+              records (gain, phantom, pad), box identity, and the master/slave
+              establishment state machines. It touches no socket and no clock.
             </p>
-          </RepoCard>
-
-          <RepoCard
-            name="libreac-transport"
-            href="https://github.com/FreeREAC/libreac"
-            licence="GPL-3.0-or-later"
-            status="Sockets, pacer, VLAN — built from the libreac repository"
-          >
             <p>
-              The second library built from the libreac repository: the parts of a REAC
-              endpoint that move frames but carry no opinion about their meaning —
-              packet capture and send, the real-time pacer that clocks the wire, network
-              interface and VLAN handling. `reac-pw` links it for transport and
-              `libreac` underneath it for what the frames mean.
+              <span class="text-ink">libreac-transport</span>, built from the same
+              repository, carries no opinion about what a frame means: AF_PACKET
+              sockets, the real-time pacer that clocks the wire, and VLAN
+              sub-interface handling on a trunk port.
             </p>
           </RepoCard>
 
@@ -77,68 +71,26 @@ useSeoMeta({
           >
             <p>
               A PipeWire-native client that puts a REAC stagebox directly on a Linux
-              audio graph as source and sink nodes — no bridge, no second encapsulation.
-              It can run as the REAC master (a Linux machine drives the stagebox) or as
-              a slave (a Linux machine joins another master's segment as if it were a
-              box). Use this when the Linux host has a network path onto the REAC
-              segment itself.
+              audio graph as source and sink nodes — no bridge, no second
+              encapsulation. It links libreac-transport for the wire and libreac
+              underneath it for what the frames mean, rather than reimplementing
+              either.
             </p>
-          </RepoCard>
-
-          <RepoCard
-            name="reac-aes67"
-            href="https://github.com/FreeREAC/reac-aes67"
-            licence="GPL-3.0-or-later"
-            status="The OpenWrt bridge to AES67"
-          >
             <p>
-              A daemon that runs on an OpenWrt router, decodes REAC on its wire, and
-              re-emits it as standard AES67 (RTP L24) multicast — so any machine on
-              ordinary networking can receive the channels with no dedicated REAC NIC.
-              Use this when the Linux host cannot see the REAC segment directly, or the
-              stagebox is reached over Wi-Fi or a routed link.
-            </p>
-          </RepoCard>
-
-          <RepoCard
-            name="reac-protocol"
-            href="https://github.com/FreeREAC/reac-protocol"
-            licence="GPL-3.0-or-later"
-            status="The protocol reference"
-          >
-            <p>
-              The written wire-format reference and a machine-checkable
-              <a href="https://kaitai.io" class="text-signal hover:underline" rel="noopener">Kaitai Struct</a>
-              grammar that parses real captures: frame geometry, addressing, the
-              control-plane handshakes, and head-amp control. Every statement is marked
-              by how it is known — verified on FreeREAC's own captures, taken from prior
-              open-source work, or still open.
-            </p>
-          </RepoCard>
-
-          <RepoCard
-            name="reac-tools"
-            href="https://github.com/FreeREAC/reac-tools"
-            licence="GPL-3.0-or-later"
-            status="Capture analysis"
-          >
-            <p>
-              Diagnostics for a captured REAC stream, in pure Python with no
-              dependencies beyond the standard library: loss, reordering, duplication,
-              inter-arrival jitter, cross-mix between two capture points, and a
-              control-plane parser for the head-amp records.
-            </p>
-          </RepoCard>
-
-          <RepoCard name="reac-captures" licence="CC0-1.0" status="Public domain capture corpus">
-            <p>
-              The raw packet captures the software above is verified against. They
-              carry the real hardware addresses of the equipment they were taken from,
-              so the corpus itself stays private; small, address-sanitised slices of it
-              are published as test fixtures inside the repositories that need them.
+              It can run as the REAC master, driving the stagebox itself, or as a
+              slave, joining another master's segment as if it were a box.
             </p>
           </RepoCard>
         </div>
+        <p class="mt-8 max-w-3xl text-base leading-relaxed text-ink-dim">
+          libreac-transport's public headers carry no socket type in any call shape:
+          every transport object reaches the operating system through one opaque
+          handle (<code class="text-ink">include/reac/transport/reac_handle.h</code>).
+          No consumer sees <code class="text-ink">AF_PACKET</code> in a function
+          signature, so a different backend — a Linux kernel module, for instance —
+          can sit under the same headers without any caller changing. The namespace
+          is already clean for it.
+        </p>
       </div>
     </section>
 
@@ -248,17 +200,33 @@ sudo dnf install reac-pw</code></pre>
 
     <section id="sources">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="Sources" title="Every repository is public." />
+        <SectionHead eyebrow="Repositories" title="Where the code lives." />
         <p class="max-w-3xl text-base leading-relaxed text-ink-dim">
-          All FreeREAC code lives at
-          <a href="https://github.com/FreeREAC" class="text-signal hover:underline" rel="noopener">github.com/FreeREAC</a>:
           <a href="https://github.com/FreeREAC/libreac" class="text-signal hover:underline" rel="noopener">libreac</a>
-          (which also builds `libreac-transport`),
-          <a href="https://github.com/FreeREAC/reac-pw" class="text-signal hover:underline" rel="noopener">reac-pw</a>,
-          <a href="https://github.com/FreeREAC/reac-aes67" class="text-signal hover:underline" rel="noopener">reac-aes67</a>,
+          — the protocol and its transport, libreac-transport, built from the same
+          repository.
+          <a href="https://github.com/FreeREAC/reac-pw" class="text-signal hover:underline" rel="noopener">reac-pw</a>
+          — the PipeWire endpoint.
           <a href="https://github.com/FreeREAC/reac-protocol" class="text-signal hover:underline" rel="noopener">reac-protocol</a>
-          and
-          <a href="https://github.com/FreeREAC/reac-tools" class="text-signal hover:underline" rel="noopener">reac-tools</a>.
+          — the wire-format reference, prose plus a machine-checkable Kaitai Struct
+          grammar: the source of truth every repository above is verified against.
+        </p>
+        <p class="mt-8 max-w-3xl text-base leading-relaxed text-ink-dim">
+          <span class="font-mono text-xs uppercase tracking-[0.14em] text-ink-faint">
+            Also in the organisation
+          </span><br>
+          <a href="https://github.com/FreeREAC/reac-tools" class="text-signal hover:underline" rel="noopener">reac-tools</a>
+          — capture analysis: loss, reordering, jitter, and a head-amp record parser.
+          <a href="https://github.com/FreeREAC/reac-captures" class="text-signal hover:underline" rel="noopener">reac-captures</a>
+          — a CC0 public-domain corpus of address-sanitised capture fixtures; the full
+          corpus carries real hardware addresses and stays private.
+          <a href="https://github.com/FreeREAC/reac-aes67" class="text-signal hover:underline" rel="noopener">reac-aes67</a>
+          — a REAC-to-AES67 bridge that runs on an OpenWrt router, kept for routers
+          with no PipeWire.
+        </p>
+        <p class="mt-8 max-w-3xl text-base leading-relaxed text-ink-dim">
+          All FreeREAC code lives at
+          <a href="https://github.com/FreeREAC" class="text-signal hover:underline" rel="noopener">github.com/FreeREAC</a>.
           Issues and pull requests are open on any of them.
         </p>
       </div>

@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 <script setup lang="ts">
 const links = [
-  { to: '/#components', label: 'Software' },
+  { to: '/#stack', label: 'The stack' },
   { to: '/#install', label: 'Install' },
   { to: '/#getting-started', label: 'Get started' },
   { to: '/#licence', label: 'Licence' },
