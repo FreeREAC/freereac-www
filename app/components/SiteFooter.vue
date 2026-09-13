@@ -25,10 +25,10 @@
       <div>
         <p class="font-mono text-xs uppercase tracking-[0.14em] text-ink-faint">On this page</p>
         <ul class="mt-3 space-y-2 text-sm">
-          <li><NuxtLink to="/#components" class="text-ink-dim hover:text-signal">Software</NuxtLink></li>
+          <li><NuxtLink to="/#stack" class="text-ink-dim hover:text-signal">The stack</NuxtLink></li>
           <li><NuxtLink to="/#install" class="text-ink-dim hover:text-signal">Install</NuxtLink></li>
           <li><NuxtLink to="/#getting-started" class="text-ink-dim hover:text-signal">Get started</NuxtLink></li>
-          <li><NuxtLink to="/#sources" class="text-ink-dim hover:text-signal">Sources</NuxtLink></li>
+          <li><NuxtLink to="/#sources" class="text-ink-dim hover:text-signal">Repositories</NuxtLink></li>
         </ul>
       </div>
       <div>
