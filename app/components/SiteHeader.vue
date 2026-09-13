@@ -1,10 +1,10 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 <script setup lang="ts">
 const links = [
-  { to: '/protocol', label: 'Protocol' },
-  { to: '/tools', label: 'Tools' },
-  { to: '/compatibility', label: 'Compatibility' },
-  { to: '/contribute', label: 'Contribute' },
+  { to: '/#components', label: 'Software' },
+  { to: '/#install', label: 'Install' },
+  { to: '/#getting-started', label: 'Get started' },
+  { to: '/#licence', label: 'Licence' },
 ] as const;
 const open = ref(false);
 </script>

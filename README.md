@@ -54,28 +54,27 @@ every page without anyone having to remember it. **Do not move it into individua
 pages.** A build can be checked in one command:
 
 ```
-grep -c "not affiliated with, sponsored by, or endorsed by" .output/public/*/index.html .output/public/index.html
+grep -c "not affiliated with, sponsored by, or endorsed by" .output/public/index.html
 ```
 
-Every line must read `1`. The wording matches the NOTICE files in the project's
+The line must read `1`. The wording matches the NOTICE files in the project's
 repositories and the organisation profile; if it changes there, change it here.
 
 ## What goes on this site
 
-Authored explanation, not working notes. The protocol page is a white paper about the
-protocol; the raw lab material, the captures and the firmware analysis stay where they
-are and are not linked or reproduced here.
-
-Every claim is graded by how it is known — measured on our own captures, taken from
-prior open-source work, or still open — and the open list is published rather than
-minimised. Unpublished work is described as unpublished instead of being linked.
+Usable documentation only: what FreeREAC is, what each repository does, how to
+install it, how to get a Roland stagebox running on Linux, the licence, and where
+the sources are. No project history, no dated findings, no roadmap — those live in
+each repository's own README and commit log, not here. A page that stops being
+usable documentation is deleted, not archived in place.
 
 ## Structure
 
 ```
-app/pages/         one file per route: index, protocol, tools, compatibility, contribute
-app/components/    the shared pieces, including the provenance badge and the frame map
-app/assets/css/    Tailwind entry, Nuxt UI, and the palette — the only stylesheet
+app/pages/index.vue    the whole site — one page, sectioned by anchor (#components,
+                        #install, #getting-started, #licence, #sources)
+app/components/        the shared pieces: header, footer, hero, section head, repo card
+app/assets/css/        Tailwind entry, Nuxt UI, and the palette — the only stylesheet
 ```
 
 Styling is Tailwind utilities and Nuxt UI components. There are no hand-written CSS rules
