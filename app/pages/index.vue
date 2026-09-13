@@ -130,7 +130,7 @@ useSeoMeta({
             </p>
           </RepoCard>
 
-          <RepoCard name="reac-captures" licence="GPL-3.0-or-later" status="Not public — kept as private test material">
+          <RepoCard name="reac-captures" status="Not public — kept as private test material">
             <p>
               The raw packet captures the software above is verified against. They
               carry the real hardware addresses of the equipment they were taken from,
@@ -144,12 +144,12 @@ useSeoMeta({
 
     <section id="install" class="border-b border-edge bg-surface/40">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="Install" title="A signed dnf repository, for Fedora." />
+        <SectionHead eyebrow="Install" title="A signed dnf repository, for Fedora 44." />
         <div class="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <pre class="overflow-x-auto rounded border border-edge bg-field p-5 text-sm leading-relaxed text-ink"><code>sudo dnf config-manager addrepo --from-repofile=https://freereac.github.io/rpm/freereac.repo
 sudo rpm --import https://freereac.github.io/rpm/RPM-GPG-KEY-freereac
-sudo dnf install libreac reac-pw</code></pre>
+sudo dnf install reac-pw</code></pre>
             <p class="mt-5 text-base leading-relaxed text-ink-dim">
               Every package and the repository metadata are GPG-signed, and `dnf`
               verifies both. `libreac` and `reac-pw` install on their own for the REAC
@@ -165,9 +165,9 @@ sudo dnf install libreac reac-pw</code></pre>
             <p class="mt-4 text-sm leading-relaxed text-ink-dim">
               Every repository builds standalone. `libreac` is a hand-kept Makefile
               (`make && make test`); `reac-pw` is Meson
-              (`meson setup build && meson compile -C build`) and needs
-              `pipewire-devel` plus a `libreac-devel` new enough for the version its
-              `meson.build` names. Each README has the exact commands.
+              (`meson setup build && ninja -C build && meson test -C build`) and needs
+              `pipewire-devel`, `libreac-devel` and `libreac-transport-devel` at the
+              versions its `meson.build` names. Each README has the exact commands.
             </p>
           </div>
         </div>
