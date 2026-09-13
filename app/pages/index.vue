@@ -130,7 +130,7 @@ useSeoMeta({
             </p>
           </RepoCard>
 
-          <RepoCard name="reac-captures" status="Not public — kept as private test material">
+          <RepoCard name="reac-captures" licence="CC0-1.0" status="Public domain capture corpus">
             <p>
               The raw packet captures the software above is verified against. They
               carry the real hardware addresses of the equipment they were taken from,
