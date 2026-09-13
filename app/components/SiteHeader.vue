@@ -1,18 +1,35 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 <script setup lang="ts">
-const links = [
+const route = useRoute();
+const isCa = computed(() => route.path === '/ca' || route.path.startsWith('/ca/'));
+const prefix = computed(() => (isCa.value ? '/ca' : ''));
+
+const linksEn = [
   { to: '/#stack', label: 'The stack' },
   { to: '/#install', label: 'Install' },
   { to: '/#getting-started', label: 'Get started' },
   { to: '/#licence', label: 'Licence' },
 ] as const;
+const linksCa = [
+  { to: '/ca#stack', label: 'La pila' },
+  { to: '/ca#install', label: "Instal·lació" },
+  { to: '/ca#getting-started', label: 'Primers passos' },
+  { to: '/ca#licence', label: 'Llicència' },
+] as const;
+const links = computed(() => (isCa.value ? linksCa : linksEn));
+
+// The counterpart of the current page in the other language, for the switch.
+const otherHref = computed(() => (isCa.value ? '/' : '/ca'));
+const otherLabel = computed(() => (isCa.value ? 'English' : 'Català'));
+const menuLabel = computed(() => (isCa.value ? 'Menú' : 'Menu'));
+
 const open = ref(false);
 </script>
 
 <template>
   <header class="sticky top-0 z-50 border-b border-edge bg-field/90 backdrop-blur-md">
     <div class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
-      <NuxtLink to="/" class="flex items-center gap-3" aria-label="FreeREAC home">
+      <NuxtLink :to="prefix || '/'" class="flex items-center gap-3" aria-label="FreeREAC home">
         <img src="/mark.svg" alt="" class="h-8 w-8" width="32" height="32">
         <span class="font-display text-lg font-semibold tracking-tight">
           <span class="text-signal">Free</span><span class="text-ink">REAC</span>
@@ -29,13 +46,18 @@ const open = ref(false);
         >{{ l.label }}</NuxtLink>
       </nav>
 
+      <NuxtLink
+        :to="otherHref"
+        class="hidden rounded border border-edge px-3 py-1.5 font-mono text-xs uppercase tracking-[0.14em] text-ink-dim transition-colors hover:text-ink md:block"
+      >{{ otherLabel }}</NuxtLink>
+
       <UButton
-        class="ml-auto md:hidden"
+        class="md:hidden"
         color="neutral"
         variant="ghost"
         :icon="open ? 'i-lucide-x' : 'i-lucide-menu'"
         :aria-expanded="open"
-        aria-label="Menu"
+        :aria-label="menuLabel"
         @click="open = !open"
       />
     </div>
@@ -49,6 +71,11 @@ const open = ref(false);
         active-class="text-signal"
         @click="open = false"
       >{{ l.label }}</NuxtLink>
+      <NuxtLink
+        :to="otherHref"
+        class="block px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-ink-dim"
+        @click="open = false"
+      >{{ otherLabel }}</NuxtLink>
     </nav>
   </header>
 </template>
