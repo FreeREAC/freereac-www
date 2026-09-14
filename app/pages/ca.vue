@@ -200,11 +200,9 @@ sudo dnf install reac-pw</code></pre>
         <div class="grid gap-10 lg:grid-cols-2 text-base leading-relaxed text-ink-dim">
           <p>
             Tot el codi de FreeREAC és GPL-3.0-or-later. Quan un fitxer deriva
-            de la feina d'algú altre — el camí de descodificació de
-            `reac-aes67` prové de `obs-h8819-source` de Norihiro Kamae —, els
-            fitxers derivats porten el copyright d'aquest autor, i el fitxer
-            `NOTICE` de cada repositori té l'atribució completa fitxer per
-            fitxer.
+            de la feina d'algú altre, els fitxers derivats porten el copyright
+            d'aquest autor, i el fitxer `NOTICE` de cada repositori té
+            l'atribució completa fitxer per fitxer.
           </p>
           <p>
             FreeREAC és un projecte independent d'interoperabilitat, no
@@ -244,9 +242,6 @@ sudo dnf install reac-pw</code></pre>
           — un corpus CC0 de domini públic de captures amb les adreces
           sanejades; el corpus complet porta adreces reals de maquinari i es
           manté privat.
-          <a href="https://github.com/FreeREAC/reac-aes67" class="text-signal hover:underline" rel="noopener">reac-aes67</a>
-          — un pont de REAC a AES67 que funciona en un router OpenWrt,
-          mantingut per a routers sense PipeWire.
         </p>
         <p class="mt-8 max-w-3xl text-base leading-relaxed text-ink-dim">
           Tot el codi de FreeREAC viu a
