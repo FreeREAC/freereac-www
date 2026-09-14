@@ -182,9 +182,8 @@ sudo dnf install reac-pw</code></pre>
         <div class="grid gap-10 lg:grid-cols-2 text-base leading-relaxed text-ink-dim">
           <p>
             All FreeREAC code is GPL-3.0-or-later. Where a file derives from someone
-            else's work — `reac-aes67`'s decode path descends from Norihiro Kamae's
-            `obs-h8819-source` — the derived files carry that author's copyright, and
-            each repository's own `NOTICE` file has the full per-file attribution.
+            else's work, the derived files carry that author's copyright, and each
+            repository's own `NOTICE` file has the full per-file attribution.
           </p>
           <p>
             FreeREAC is an independent interoperability project, not affiliated with,
@@ -220,9 +219,6 @@ sudo dnf install reac-pw</code></pre>
           <a href="https://github.com/FreeREAC/reac-captures" class="text-signal hover:underline" rel="noopener">reac-captures</a>
           — a CC0 public-domain corpus of address-sanitised capture fixtures; the full
           corpus carries real hardware addresses and stays private.
-          <a href="https://github.com/FreeREAC/reac-aes67" class="text-signal hover:underline" rel="noopener">reac-aes67</a>
-          — a REAC-to-AES67 bridge that runs on an OpenWrt router, kept for routers
-          with no PipeWire.
         </p>
         <p class="mt-8 max-w-3xl text-base leading-relaxed text-ink-dim">
           All FreeREAC code lives at
