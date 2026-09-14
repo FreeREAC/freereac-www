@@ -46,8 +46,8 @@ useSeoMeta({
 
     <section id="stack" class="border-b border-edge">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="La pila" title="Dues capes." />
-        <div class="grid gap-5 md:grid-cols-2">
+        <SectionHead eyebrow="La pila" title="Tres peces." />
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           <RepoCard
             name="libreac"
             href="https://github.com/FreeREAC/libreac"
@@ -89,6 +89,20 @@ useSeoMeta({
               Pot funcionar com a mestre REAC, fent anar la caixa d'escenari
               directament, o com a esclau, incorporant-se al segment d'un
               altre mestre com si fos una caixa.
+            </p>
+          </RepoCard>
+
+          <RepoCard
+            name="reac-stageboxes"
+            href="https://github.com/FreeREAC/reac-stageboxes"
+            licence="GPL-3.0-or-later"
+            status="L'aplicació d'escriptori per als preamplificadors"
+          >
+            <p>
+              Una aplicació GTK4/libadwaita que llista cada segment REAC del
+              graf de PipeWire i estableix l'alimentació fantasma, l'atenuador
+              (pad) i la sensibilitat de cada entrada escrivint els paràmetres
+              propis del node de reac-pw — no cal res més que reac-pw.
             </p>
           </RepoCard>
         </div>
@@ -226,6 +240,8 @@ sudo dnf install reac-pw</code></pre>
           del mateix repositori.
           <a href="https://github.com/FreeREAC/reac-pw" class="text-signal hover:underline" rel="noopener">reac-pw</a>
           — el punt final de PipeWire.
+          <a href="https://github.com/FreeREAC/reac-stageboxes" class="text-signal hover:underline" rel="noopener">reac-stageboxes</a>
+          — l'aplicació d'escriptori per als preamplificadors.
           <a href="https://github.com/FreeREAC/reac-protocol" class="text-signal hover:underline" rel="noopener">reac-protocol</a>
           — la referència del format de trama (wire format), en prosa més una
           gramàtica Kaitai Struct verificable per màquina: la font de veritat
