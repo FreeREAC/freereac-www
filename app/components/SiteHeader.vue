@@ -23,6 +23,13 @@ const otherHref = computed(() => (isCa.value ? '/' : '/ca'));
 const otherLabel = computed(() => (isCa.value ? 'English' : 'Català'));
 const menuLabel = computed(() => (isCa.value ? 'Menú' : 'Menu'));
 
+// UColorModeButton toggles the resolved mode (colorMode.value) and, on click,
+// sets an explicit preference — it starts by following the system scheme
+// (colorMode.preference: 'system' in nuxt.config.ts) and only pins to one
+// mode once the visitor overrides it. $attrs land after the component's own
+// computed aria-label, so this one wins; it stays in the visitor's language.
+const themeLabel = computed(() => (isCa.value ? 'Canvia el tema clar/fosc' : 'Toggle light/dark theme'));
+
 const open = ref(false);
 </script>
 
@@ -50,6 +57,8 @@ const open = ref(false);
         :to="otherHref"
         class="hidden rounded border border-edge px-3 py-1.5 font-mono text-xs uppercase tracking-[0.14em] text-ink-dim transition-colors hover:text-ink md:block"
       >{{ otherLabel }}</NuxtLink>
+
+      <UColorModeButton class="ml-auto md:ml-0" color="neutral" variant="ghost" :aria-label="themeLabel" />
 
       <UButton
         class="md:hidden"

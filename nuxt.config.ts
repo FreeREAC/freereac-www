@@ -11,9 +11,12 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  // Dark only. Nuxt UI tracks its own `.dark` class through @nuxtjs/color-mode;
-  // without this its components render light variants over a dark page.
-  colorMode: { preference: 'dark', fallback: 'dark', classSuffix: '' },
+  // Follows the system scheme by default; falls back to the dark look the site
+  // shipped with when no preference can be read (pre-hydration, no-JS). Nuxt UI
+  // tracks the resolved mode through this same `.dark` class from
+  // @nuxtjs/color-mode — without it, its components render light variants over
+  // a dark page. The header carries the one manual override control.
+  colorMode: { preference: 'system', fallback: 'dark', classSuffix: '' },
 
   app: {
     // A project page under github.io lives at /<repo>/. Set NUXT_APP_BASE_URL at
@@ -22,7 +25,8 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' },
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'theme-color', content: '#0d0d10' },
+        { name: 'theme-color', content: '#f7f5f1', media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: '#0d0d10', media: '(prefers-color-scheme: dark)' },
       ],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/mark.svg' }],
     },

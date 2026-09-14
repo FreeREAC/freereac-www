@@ -2,11 +2,18 @@
 /*
  * Tailwind v4 entry. Core first, then Nuxt UI (v4 integrates Tailwind v4 itself).
  *
- * The palette is an instrument, not a product: a neutral near-black bench, warm
- * ink, and one signal amber for anything that carries meaning. Verified facts get
- * a separate green, because on this site the difference between "we measured
- * this" and "we think this" is the whole point and it should be visible without
- * reading.
+ * The palette is an instrument, not a product: a neutral bench, warm ink, and
+ * one signal amber for anything that carries meaning. Verified facts get a
+ * separate green, because on this site the difference between "we measured
+ * this" and "we think this" is the whole point and it should be visible
+ * without reading.
+ *
+ * The site follows the system colour scheme (@nuxtjs/color-mode, bundled with
+ * Nuxt UI), with a manual override in the header. `@theme` below carries the
+ * LIGHT values as the default token set; the `.dark` block a few lines down
+ * overrides every one of them for dark mode — that class lands on `<html>`
+ * before paint, so there is no flash of the wrong palette. Every colour is
+ * defined in BOTH places; a token declared in only one mode is a bug.
  *
  * Everything else is Tailwind utilities and Nuxt UI components. There are no
  * hand-written rules and no second stylesheet.
@@ -15,6 +22,35 @@
 @import "@nuxt/ui";
 
 @theme {
+  --color-field: #f7f5f1;
+  --color-surface: #ffffff;
+  --color-surface-2: #efece5;
+  --color-ink: #1c1a17;
+  --color-ink-dim: #57534b;
+  --color-ink-faint: #868175;
+  --color-signal: #a25c20;
+  --color-verified: #227a3a;
+  --color-open: #4a5aa8;
+  --color-edge: #ddd8cf;
+  --color-edge-strong: #c4beb2;
+
+  /* Families are named here and nowhere else. @nuxt/fonts (shipped with Nuxt UI)
+     reads them off this file, downloads them AT BUILD TIME and emits self-hosted
+     @font-face rules, so the built site fetches no stylesheet from anyone. */
+  --font-display: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/*
+ * Dark mode — these are the original values the site shipped with, unchanged,
+ * so dark still looks exactly as it did before light mode existed. `.dark`
+ * lands on `<html>` (colorMode classSuffix: '' in nuxt.config.ts), so this
+ * simply overrides the custom properties the @theme block above defines;
+ * Tailwind's generated utilities (`bg-field`, `text-ink`, …) reference the
+ * properties, never a literal, so the override reaches every utility class.
+ */
+.dark {
   --color-field: #0d0d10;
   --color-surface: #16171b;
   --color-surface-2: #1e2026;
@@ -26,13 +62,6 @@
   --color-open: #7f8cc4;
   --color-edge: #2b2c31;
   --color-edge-strong: #3d3f46;
-
-  /* Families are named here and nowhere else. @nuxt/fonts (shipped with Nuxt UI)
-     reads them off this file, downloads them AT BUILD TIME and emits self-hosted
-     @font-face rules, so the built site fetches no stylesheet from anyone. */
-  --font-display: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 /*
