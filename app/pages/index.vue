@@ -41,8 +41,8 @@ useSeoMeta({
 
     <section id="stack" class="border-b border-edge">
       <div class="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead eyebrow="The stack" title="Two layers." />
-        <div class="grid gap-5 md:grid-cols-2">
+        <SectionHead eyebrow="The stack" title="Three pieces." />
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           <RepoCard
             name="libreac"
             href="https://github.com/FreeREAC/libreac"
@@ -79,6 +79,20 @@ useSeoMeta({
             <p>
               It can run as the REAC master, driving the stagebox itself, or as a
               slave, joining another master's segment as if it were a box.
+            </p>
+          </RepoCard>
+
+          <RepoCard
+            name="reac-stageboxes"
+            href="https://github.com/FreeREAC/reac-stageboxes"
+            licence="GPL-3.0-or-later"
+            status="The desktop app for the preamps"
+          >
+            <p>
+              A GTK4/libadwaita application that lists every REAC segment on the
+              PipeWire graph and sets phantom power, the pad and the sensitivity on
+              each input by writing reac-pw's own node parameters — nothing but
+              reac-pw needed.
             </p>
           </RepoCard>
         </div>
@@ -206,6 +220,8 @@ sudo dnf install reac-pw</code></pre>
           repository.
           <a href="https://github.com/FreeREAC/reac-pw" class="text-signal hover:underline" rel="noopener">reac-pw</a>
           — the PipeWire endpoint.
+          <a href="https://github.com/FreeREAC/reac-stageboxes" class="text-signal hover:underline" rel="noopener">reac-stageboxes</a>
+          — the desktop app for the preamps.
           <a href="https://github.com/FreeREAC/reac-protocol" class="text-signal hover:underline" rel="noopener">reac-protocol</a>
           — the wire-format reference, prose plus a machine-checkable Kaitai Struct
           grammar: the source of truth every repository above is verified against.
