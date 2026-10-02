@@ -18,6 +18,10 @@ npx serve .output/public
 
 `npm run dev` runs it with hot reload on <http://localhost:3000>.
 
+Build steps belong here, never on the README: `scripts/readme-no-build.sh` fails the
+build (it runs before `npm run generate`, and as `npm test`) when the README's code names
+a build command.
+
 ## The base URL is a build input, not a serving option
 
 A prerendered page names its assets absolutely. A site built for `/` and then served

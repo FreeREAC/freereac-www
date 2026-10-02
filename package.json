@@ -9,9 +9,11 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
+    "pregenerate": "bash scripts/readme-no-build.sh --self-test && bash scripts/readme-no-build.sh README.md",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "test": "bash scripts/readme-no-build.sh --self-test && bash scripts/readme-no-build.sh README.md"
   },
   "dependencies": {
     "@nuxt/ui": "^4.10.0",
