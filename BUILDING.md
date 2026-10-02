@@ -1,6 +1,7 @@
-# freereac-www
+# Building freereac-www
 
-The FreeREAC project website. Nuxt, statically generated, no server at runtime.
+How to build, preview and publish the FreeREAC project website. It is Nuxt, statically
+generated, with no server at runtime. What the site is for is in [README.md](README.md).
 
 ## Build
 
@@ -79,7 +80,3 @@ app/assets/css/        Tailwind entry, Nuxt UI, and the palette — the only sty
 
 Styling is Tailwind utilities and Nuxt UI components. There are no hand-written CSS rules
 and no second stylesheet.
-
-## Licence
-
-GPL-3.0-or-later, matching the FreeREAC repositories.
